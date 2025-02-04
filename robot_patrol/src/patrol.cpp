@@ -118,8 +118,9 @@ private:
 
         //RCLCPP_INFO(this->get_logger(), "max range: %f at index: %d", max_range, max_index);
 
-        // get that direction
+        
         if (max_index != -1){
+        // get that direction
         _direction = (msg->angle_min + max_index * msg->angle_increment);
         //move_msg.linear.x = 0.1;
         move_msg.angular.z = _direction/2.0;
