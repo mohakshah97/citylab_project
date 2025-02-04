@@ -20,7 +20,7 @@ def generate_launch_description():
         arguments=['-d', config_file],
         output='screen'
     ) 
-    config_file = LaunchConfiguration('config_file', default='home/user/cp5.rviz')
+    # config_file = LaunchConfiguration('config_file', default='home/user/cp5.rviz')
 
     return LaunchDescription([
         my_node,
