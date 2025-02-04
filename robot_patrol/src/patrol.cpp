@@ -156,6 +156,8 @@ int main(int argc, char * argv[])
   rclcpp::init(argc, argv);
   std::shared_ptr<Patrol> robot_patrol_node = std::make_shared<Patrol>();
   //rclcpp::spin(std::make_shared<Patrol>());
+
+  // trying with multi threaded approach
   rclcpp::executors::MultiThreadedExecutor executor;
   executor.add_node(robot_patrol_node);
   executor.spin();
