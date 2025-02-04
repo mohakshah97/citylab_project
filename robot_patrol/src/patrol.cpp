@@ -61,21 +61,21 @@ private:
 
         // Approach 1 ................... have 60 degree front laser scan data 
 
-    // for (size_t i = 300; i < 420; ++i) {
-    //   //angle = msg->angle_min + i * msg->angle_increment;
-    //   if (msg->ranges[i] < 0.35) {
-    //     //max_index_ = i;
-    //     obstacle = true;
-    //     break;
-    //   }
-    // }
+    for (size_t i = 300; i < 420; ++i) {
+      //angle = msg->angle_min + i * msg->angle_increment;
+      if (msg->ranges[i] < 0.35) {
+        //max_index_ = i;
+        obstacle = true;
+        break;
+      }
+    }
 
         // Approach 2 .................. only check with front laser scan ranges{360}
 
-    if(msg->ranges[360] < 0.35){
-        obstacle = true;
+    // if(msg->ranges[360] < 0.35){
+    //     obstacle = true;
     
-    }
+    // }
 
     RCLCPP_INFO(this->get_logger(),"distance in front: %f",msg->ranges[360]);
     // range_ = (msg->ranges.size())/2;
