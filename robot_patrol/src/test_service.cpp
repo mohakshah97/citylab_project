@@ -18,6 +18,7 @@ public:
     client_ = this->create_client<MyCustomService>("direction_service");
     scan_subscription_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
         "scan", 10, std::bind(&TestService::scan_callback, this, std::placeholders::_1));
+    RCLCPP_INFO(this->get_logger(), "Service Client Ready");
   }
 
 private:
@@ -32,6 +33,7 @@ private:
 
     auto result_future = client_->async_send_request(request, std::bind(&TestService::response_callback, this, std::placeholders::_1));
 
+    RCLCPP_INFO(this->get_logger(), "Client Requested Service");
     // if (result_future.wait_for(1s) == std::future_status::ready) {
     //   auto response = result_future.get();
     //   RCLCPP_INFO(this->get_logger(), "Direction: %s", response->direction.c_str());
@@ -43,7 +45,7 @@ private:
     void response_callback(rclcpp::Client<MyCustomService>::SharedFuture future)
   {
     auto result = future.get();
-    RCLCPP_INFO(this->get_logger(), "direction: %s", result->direction.c_str());
+    RCLCPP_INFO(this->get_logger(), "Service Response receieved :- direction: %s", result->direction.c_str());
   }
 
   rclcpp::Client<MyCustomService>::SharedPtr client_;

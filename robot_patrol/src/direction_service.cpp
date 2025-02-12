@@ -20,6 +20,7 @@ public:
 DirectionService():Node("service_moving")
 {
 srv_ = create_service<MyCustomService>("direction_service", std::bind(&DirectionService::direction_callback,this,_1,_2));
+RCLCPP_INFO(this->get_logger(), "Service Server Ready");
 }
 
 private :
@@ -33,6 +34,7 @@ std::string direction_;
 void direction_callback(const std::shared_ptr<MyCustomService::Request> request,
 const std::shared_ptr<MyCustomService::Response> response)
 {
+RCLCPP_INFO(this->get_logger(), "Service Requested");
 if (request == nullptr){
     return;// laser data is empty
 }
@@ -79,8 +81,9 @@ direction_ = "Left";
 
 response->direction = direction_;
 
-RCLCPP_INFO(this->get_logger(), "Distance_Right: %f, Distance_Front: %f, Distance_Left: %f", total_dist_sec_right, total_dist_sec_front, total_dist_sec_left);
-RCLCPP_INFO(this->get_logger(), "Direction: %s because max_distance: %f", response->direction.c_str(), max_distance_direction);
+RCLCPP_INFO(this->get_logger(), "Service Completed");
+// RCLCPP_INFO(this->get_logger(), "Distance_Right: %f, Distance_Front: %f, Distance_Left: %f", total_dist_sec_right, total_dist_sec_front, total_dist_sec_left);
+// RCLCPP_INFO(this->get_logger(), "Direction: %s because max_distance: %f", response->direction.c_str(), max_distance_direction);
 
 }
 
