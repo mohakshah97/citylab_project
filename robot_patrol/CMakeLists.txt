@@ -11,6 +11,8 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(std_srvs REQUIRED)
+find_package(direction_custom_interface REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -27,8 +29,20 @@ endif()
 add_executable(patrol src/patrol.cpp)
 ament_target_dependencies(patrol rclcpp sensor_msgs std_msgs)
 
+add_executable(direction_service src/direction_service.cpp)
+ament_target_dependencies(direction_service rclcpp sensor_msgs std_msgs std_srvs direction_custom_interface)
+
+add_executable(patrol_with_service src/patrol_with_service.cpp)
+ament_target_dependencies(patrol_with_service rclcpp sensor_msgs std_msgs std_srvs direction_custom_interface)
+
+add_executable(test_service src/test_service.cpp)
+ament_target_dependencies(test_service rclcpp sensor_msgs std_msgs std_srvs direction_custom_interface)
+
 install(TARGETS
    patrol
+   direction_service
+   patrol_with_service
+   test_service
    DESTINATION lib/${PROJECT_NAME}
  )
 
