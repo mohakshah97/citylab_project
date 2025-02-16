@@ -6,11 +6,12 @@
 #include <iostream>
 #include <type_traits>
 #include <string>
-#include "direction_custom_interface/srv/get_direction.hpp"
+// #include "direction_custom_interface/srv/get_direction.hpp"
+#include "robot_patrol/srv/get_direction.hpp"
 
 //using namespace std;
 using namespace std::chrono_literals;
-using MyCustomService = direction_custom_interface::srv::GetDirection;
+using MyCustomService = robot_patrol::srv::GetDirection;
 
 class Patrol : public rclcpp::Node
 {

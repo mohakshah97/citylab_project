@@ -7,7 +7,8 @@
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_action/rclcpp_action.hpp"
 
-#include "direction_custom_interface/action/go_to_pose.hpp"
+// #include "direction_custom_interface/action/go_to_pose.hpp"
+#include "robot_patrol/action/go_to_pose.hpp"
 #include "geometry_msgs/msg/pose2_d.hpp"
 #include "geometry_msgs/msg/twist.hpp"
 #include "nav_msgs/msg/odometry.hpp"
@@ -18,7 +19,7 @@
 
 class GoToPose : public rclcpp::Node {
 public:
-  using Move = direction_custom_interface::action::GoToPose; // change it to
+  using Move = robot_patrol::action::GoToPose; // change it to
                                                              // custom message
   using GoalHandleMove =
       rclcpp_action::ServerGoalHandle<Move>; // change to something instead of

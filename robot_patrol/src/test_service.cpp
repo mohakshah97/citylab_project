@@ -2,13 +2,14 @@
 #include <functional>
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/laser_scan.hpp>
-#include "direction_custom_interface/srv/get_direction.hpp"
+// #include "direction_custom_interface/srv/get_direction.hpp"
+#include "robot_patrol/srv/get_direction.hpp"
 #include <cmath>
 #include <iostream>
 #include <type_traits>
 
 using namespace std;
-using MyCustomService = direction_custom_interface::srv::GetDirection;
+using MyCustomService = robot_patrol::srv::GetDirection;
 
 class TestService : public rclcpp::Node
 {

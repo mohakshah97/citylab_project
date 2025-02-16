@@ -1,6 +1,7 @@
 
 #include "rclcpp/rclcpp.hpp"
-#include "direction_custom_interface/srv/get_direction.hpp"
+// #include "direction_custom_interface/srv/get_direction.hpp"
+#include "robot_patrol/srv/get_direction.hpp"
 #include "rclcpp/service.hpp"
 #include <cstddef>
 #include <functional>
@@ -12,7 +13,7 @@
 using std::placeholders::_1;
 using std::placeholders::_2;
 
-using MyCustomService = direction_custom_interface::srv::GetDirection;
+using MyCustomService = robot_patrol::srv::GetDirection;
 
 class DirectionService : public rclcpp::Node
 {
