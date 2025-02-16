@@ -61,14 +61,14 @@ private:
 
         // Approach 1 ................... have 60 degree front laser scan data 
 
-    // for (size_t i = 300; i < 420; ++i) {
-    //   //angle = msg->angle_min + i * msg->angle_increment;
-    //   if (msg->ranges[i] < 0.35) {
-    //     //max_index_ = i;
-    //     obstacle = true;
-    //     break;
-    //   }
-    // }
+    for (size_t i = 300; i < 420; ++i) {
+      //angle = msg->angle_min + i * msg->angle_increment;
+      if (msg->ranges[i] < 0.35) {
+        //max_index_ = i;
+        obstacle = true;
+        break;
+      }
+    }
 
 
     //RCLCPP_INFO(this->get_logger(),"distance in front: %f",msg->ranges[360]);
@@ -79,7 +79,8 @@ private:
     //RCLCPP_INFO(this->get_logger(), "Distance in front: %f at index: %d and angle : %f", msg->ranges[max_index_], max_index_, angle);
 
 
-    if(msg->ranges[360] < 0.35)
+    //if(msg->ranges[360] < 0.35)
+    if(obstacle)
     { 
         RCLCPP_INFO(this->get_logger(),"obstacle Detected");
 
@@ -214,7 +215,7 @@ private:
     
     }
     publisher_->publish(move_msg);
-    //obstacle = false;
+    obstacle = false;
 
   }
     geometry_msgs::msg::Twist move_msg;

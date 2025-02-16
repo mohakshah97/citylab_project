@@ -8,10 +8,12 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclcpp_action REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
+find_package(tf2 REQUIRED)
 find_package(direction_custom_interface REQUIRED)
 
 if(BUILD_TESTING)
@@ -38,11 +40,15 @@ ament_target_dependencies(patrol_with_service rclcpp sensor_msgs std_msgs std_sr
 add_executable(test_service src/test_service.cpp)
 ament_target_dependencies(test_service rclcpp sensor_msgs std_msgs std_srvs direction_custom_interface)
 
+add_executable(go_to_pose_action src/go_to_pose_action.cpp)
+ament_target_dependencies(go_to_pose_action rclcpp rclcpp_action tf2 nav_msgs geometry_msgs std_msgs direction_custom_interface)
+
 install(TARGETS
    patrol
    direction_service
    patrol_with_service
    test_service
+   go_to_pose_action
    DESTINATION lib/${PROJECT_NAME}
  )
 
